@@ -12,7 +12,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.get('/', (req, res) => {
     res.send('Hello World from Express!');
 });
-app.use('/api/product', productRouter);
+app.use('api/product', productRouter)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
