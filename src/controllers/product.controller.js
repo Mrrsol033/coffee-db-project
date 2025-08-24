@@ -8,6 +8,7 @@ exports.createProduct = async (req, res) => {
         ? `${BASE_URL}/uploads/${req.file.filename}`
         : null;
 
+    // Validate required fields
     if (!name || !basePrice) {
         return res.status(400).send({
             status: 'error',
@@ -22,8 +23,8 @@ exports.createProduct = async (req, res) => {
             [
                 name,
                 description || null,
-                basePrice || null,
-                imageUrl || null,
+                basePrice,
+                imageUrl,
                 isActive === undefined ? 1 : isActive
             ]
         );
@@ -43,7 +44,13 @@ exports.createProduct = async (req, res) => {
         console.error('❌ DB Error:', error.message);
         res.status(500).send({ status: 'error', message: error.message });
     }
-};
+}
+
+
+
+
+
+
 
 // To Get All Products
 exports.getAllProducts = async (req, res) => {
